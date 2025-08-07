@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  // Routes will be added as we create components
+  { path: '', redirectTo: '/users', pathMatch: 'full' },
+  { path: 'users', loadComponent: () => import('./components/user-list/user-list.component').then(m => m.UserListComponent) },
+  { path: 'user/:id', loadComponent: () => import('./components/user-detail/user-detail.component').then(m => m.UserDetailComponent) },
+  { path: '**', redirectTo: '/users' }
 ];

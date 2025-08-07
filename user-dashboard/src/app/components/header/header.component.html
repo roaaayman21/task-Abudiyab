@@ -1,0 +1,23 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <h1 class="logo">Angular Quiz</h1>
+      <div class="search-container">
+        <input
+          type="text"
+          placeholder="Search user by ID..."
+          class="search-input"
+          [(ngModel)]="searchQuery"
+          (input)="onSearchInput($event)"
+          (keyup.enter)="onSearchEnter()"
+        >
+        <button type="button" class="search-btn" (click)="onSearchEnter()" title="Search user" aria-label="Search user">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
