@@ -76,6 +76,18 @@
   display: inline-block;
 }
 
+.address-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.address-details {
+  margin-left: 80px;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
 .user-not-found {
   text-align: center;
   padding: 3rem;

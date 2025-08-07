@@ -24,6 +24,15 @@
             <p><strong>Phone:</strong> {{ user.phone || 'N/A' }}</p>
             <p><strong>Age:</strong> {{ user.age || 'N/A' }}</p>
             <p><strong>Gender:</strong> {{ user.gender || 'N/A' }}</p>
+            <p><strong>Birth Date:</strong> {{ user.birthDate || 'N/A' }}</p>
+            <div *ngIf="user.address" class="address-section">
+              <p><strong>Address:</strong></p>
+              <p class="address-details">
+                {{ user.address.address }}<br>
+                {{ user.address.city }}, {{ user.address.state }}<br>
+                {{ user.address.country }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
