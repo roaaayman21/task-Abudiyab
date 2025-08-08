@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { UserDetail } from '../../services/user.service';
 import * as UserSelectors from '../../store/user.selectors';
+import * as UserActions from '../../store/user.actions';
 
 @Component({
   selector: 'app-user-detail',
