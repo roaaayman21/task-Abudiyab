@@ -1,0 +1,4 @@
+{
+  // Recommended VS Code extensions for this project
+  "recommendations": ["angular.ng-template"]
+}

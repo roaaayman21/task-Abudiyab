@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <h1 class="logo">Dashboard</h1>
+      <div class="search-container">
+        <div class="search-box">
+          <input
+            type="number"
+            placeholder="Search by user ID (e.g. 5)"
+            class="search-input"
+            [(ngModel)]="searchQuery"
+            (input)="onSearchInput($event)"
+            autocomplete="off"
+            min="1"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,73 @@
+<div class="user-list-container">
+  <div class="container">
+    <!-- Show spinner while loading -->
+    <div *ngIf="loading$ | async" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading users...</p>
+    </div>
+
+    <!-- Grid of user cards -->
+    <ng-container *ngIf="!(loading$ | async)">
+      <div class="user-grid" [@fadeIn] *ngIf="(users$ | async) as users">
+        <mat-card
+          *ngFor="let user of users"
+          class="user-card"
+          (click)="onUserClick(user.id)"
+          [attr.data-user-id]="user.id"
+          appHighlight
+          highlightColor="rgba(6, 182, 212, 0.12)"
+          scaleAmount="1.05"
+          animationDuration="0.3s"
+          shadowIntensity="medium"
+          [@scaleIn]
+        >
+          <mat-card-content>
+            <div class="user-avatar">
+              <img [src]="user.image" [alt]="user.firstName + ' ' + user.lastName" />
+            </div>
+            <div class="user-info">
+              <h3>{{ user.firstName }} {{ user.lastName }}</h3>
+              <p class="user-id">ID: {{ user.id }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" *ngIf="(users$ | async) as users; else noUsers">
+        <ng-container *ngIf="users.length > 0">
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="(currentPage$ | async) === 1"
+            (click)="onPreviousPage()"
+          >
+            <mat-icon>chevron_left</mat-icon>
+            Previous
+          </button>
+
+          <span class="page-info">
+            Page {{ currentPage$ | async }} of {{ totalPages$ | async }}
+          </span>
+
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="(currentPage$ | async) === (totalPages$ | async)"
+            (click)="onNextPage()"
+          >
+            Next
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </ng-container>
+      </div>
+
+      <!-- No users message -->
+      <ng-template #noUsers>
+        <div class="no-users">
+          <p>No users found.</p>
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>

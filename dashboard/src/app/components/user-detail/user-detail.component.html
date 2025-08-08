@@ -1,0 +1,56 @@
+<div class="user-detail-container">
+  <div class="container">
+    <!-- Loading spinner -->
+    <div *ngIf="loading$ | async" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading user details...</p>
+    </div>
+
+    <!-- User details -->
+    <div *ngIf="!(loading$ | async) && (user$ | async) as user" class="user-detail">
+      <button mat-raised-button color="primary" class="back-btn" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Users
+      </button>
+
+      <mat-card class="user-profile">
+        <mat-card-content>
+          <div class="profile-layout">
+            <div class="user-avatar">
+              <img [src]="user.image" [alt]="user.firstName + ' ' + user.lastName" />
+            </div>
+            <div class="user-info">
+              <h1>{{ user.firstName }} {{ user.lastName }}</h1>
+              <p class="user-id">User ID: {{ user.id }}</p>
+              <div class="user-details">
+                <p><strong>Email:</strong> {{ user.email || 'N/A' }}</p>
+                <p><strong>Phone:</strong> {{ user.phone || 'N/A' }}</p>
+                <p><strong>Age:</strong> {{ user.age || 'N/A' }}</p>
+                <p><strong>Gender:</strong> {{ user.gender || 'N/A' }}</p>
+                <p><strong>Birth Date:</strong> {{ user.birthDate || 'N/A' }}</p>
+                <div *ngIf="user.address" class="address-section">
+                  <p><strong>Address:</strong></p>
+                  <p class="address-details">
+                    {{ user.address.address }}<br>
+                    {{ user.address.city }}, {{ user.address.state }}<br>
+                    {{ user.address.country }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- User not found -->
+    <div *ngIf="!(loading$ | async) && !(user$ | async)" class="user-not-found">
+      <h2>User Not Found</h2>
+      <p>The user you're looking for doesn't exist.</p>
+      <button mat-raised-button color="primary" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Users
+      </button>
+    </div>
+  </div>
+</div>
