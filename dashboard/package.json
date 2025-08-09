@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production --base-href=/task-Abudiyab/ && sed -i 's|C:/Program Files/Git/task-Abudiyab/|/task-Abudiyab/|g' dist/angular-quiz/browser/index.html && npx angular-cli-ghpages --dir=dist/angular-quiz/browser"
   },
   "private": true,
   "dependencies": {
